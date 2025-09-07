@@ -8997,17 +8997,996 @@ This approach enables compatibility, future-proofed execution, and robust metada
 [12](https://www.reddit.com/r/bash/comments/ugoz97/today_i_understood_the_importance_of_the_shebang/)
 [13](https://www.shellscript.sh/examples/shebang/)
 [14](https://realpython.com/videos/execute-python-scripts-shebang-overview/)
-[1](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_673d0eb5-c614-4882-8690-d433af904690/5e0059f9-c3f1-4c9e-a02a-1d053daae8a2/i-need-help-obtaining-my-aln-s-yYMXDj2WS4S4gtVGEM8zng.md)
-[2](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_673d0eb5-c614-4882-8690-d433af904690/b4a8b3a2-c43f-4f80-b1e9-db2f85e0a1e1/bash-net-v8-00-event-not-found-_yNeMz4ORh2oZ_rPufeCZg.md)
-[3](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_673d0eb5-c614-4882-8690-d433af904690/95d52a7c-7286-4180-8317-4b59bd594bb0/ALNFantasia.txt)
-[4](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_673d0eb5-c614-4882-8690-d433af904690/c728ab9d-4395-4955-9d15-cbb3f008180e/rewrite-the-entire-conversatio-mWxyHEyYQo.mCTKK44ZpgA.md)
-[5](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_673d0eb5-c614-4882-8690-d433af904690/dc8b5e00-87d2-4a38-bf10-9fbe1d61550c/here-are-your-settings-for-my-lzwVP06zQraDwzL5u_AGjA.md)
-[6](https://dev.to/vectordatabasetop/shebang-line-a-complete-explaination-4ai1)
-[7](https://stackoverflow.com/questions/3009192/how-does-the-shebang-work)
-[8](https://dev.to/meleu/what-the-shebang-really-does-and-why-it-s-so-important-in-your-shell-scripts-2755)
-[9](https://en.wikipedia.org/wiki/Shebang_(Unix))
-[10](https://www.youtube.com/watch?v=TslulSJClhI)
-[11](https://linuxconfig.org/bash-script-shebang-usage-and-best-practices)
-[12](https://www.reddit.com/r/bash/comments/ugoz97/today_i_understood_the_importance_of_the_shebang/)
-[13](https://www.shellscript.sh/examples/shebang/)
-[14](https://realpython.com/videos/execute-python-scripts-shebang-overview/)
+
+Values
+Display override objects are display-mode strings, the possible values are:
+
+browser
+The application opens in a conventional browser tab or new window, depending on the browser and platform. This is the default.
+
+fullscreen
+All of the available display area is used and no user agent chrome is shown.
+
+minimal-ui
+The application will look and feel like a standalone application with a minimal set of UI elements for controlling navigation. The elements will vary by browser.
+
+standalone
+The application will look and feel like a standalone application. This can include the application having a different window, its own icon in the application launcher, etc. In this mode, the user agent will exclude UI elements for controlling navigation, but can include other UI elements such as a status bar.
+
+tabbed Experimental
+The application can contain multiple application contexts inside a single OS-level window. Supporting browsers can choose how to display these contexts, but a common approach is to provide a tab bar to switch between them.
+
+window-controls-overlay Experimental
+This display mode only applies when the application is in a separate PWA window and on a desktop operating system. The application will opt-in to the Window Controls Overlay feature, where the full window surface area will be available for the app's web content and the window control buttons (maximize, minimize, close, and other PWA-specific buttons) will appear as an overlay above the web content.
+
+Examples
+In the example below, the browser will consider the following display-mode fallback chain in this order: fullscreen → minimal-ui → standalone.
+
+json
+
+Copy
+{
+  "display_override": ["fullscreen", "minimal-ui"],
+  "display": "standalone"
+}
+Specifications
+Specification
+Manifest Incubations
+# display_override-member
+Browser compatibility
+Report problems with this compatibility data • View data on GitHub 
+desktop
+mobile
+Chrome
+Edge
+Firefox
+Opera
+Safari
+Chrome Android
+Firefox for Android
+Opera Android
+Safari on iOS
+Samsung Internet
+WebView Android
+WebView on iOS
+display_override
+Experimental
+
+89
+footnote
+
+89
+footnote
+
+No
+
+75
+footnote
+
+No
+
+89
+footnote
+
+No
+
+63
+footnote
+
+No
+
+15
+footnote
+
+No
+
+No
+tabbed display mode
+Experimental
+
+126
+
+126
+
+No
+
+112
+
+No
+
+126
+
+No
+
+83
+
+No
+
+28
+
+No
+
+No
+window-controls-overlay display mode
+Experimental
+
+105
+
+105
+
+No
+
+91
+
+No
+
+105
+
+No
+
+72
+
+No
+
+20
+
+No
+
+No
+Legend
+Tip: you can click/tap on a cell for more information.
+
+Full support
+Full support
+No support
+No support
+⁨Experimental⁩. Expect behavior to change in the future.
+See implementation notes.
+See also
+Preparing for the display modes of tomorrow
+Customize the window controls overlay of your PWA's title bar
+Help improve MDN
+
+Was this page helpful to you?
+
+Yes
+
+No
+Learn how to contribute
+This page was last modified on ⁨Jun 23, 2025⁩ by MDN contributors.
+
+View this page on GitHub • Report a problem with this content
+Filter sidebar
+Filter
+Progressive web apps
+Guides
+What is a progressive web app?
+Installing and uninstalling web apps
+Making PWAs installable
+Offline and background operation
+Caching
+Best practices for PWAs
+Tutorials
+CycleTracker
+js13kGames
+How to
+Trigger installation from your PWA
+Define your app icons
+Create a standalone app
+Customize colors of your app
+Display a badge on the app icon
+Expose common app actions as shortcuts
+Share data between apps
+Associate files with your PWA
+Reference
+Web app manifest
+Manifest members
+background_color
+categories
+description
+display
+display_override
+Experimental
+file_handlers
+Experimental
+icons
+id
+launch_handler
+Experimental
+name
+note_taking
+Experimental
+orientation
+prefer_related_applications
+Experimental
+protocol_handlers
+Experimental
+related_applications
+Experimental
+scope
+scope_extensions
+Experimental
+screenshots
+serviceworker
+ExperimentalNon-standard
+share_target
+Experimental
+short_name
+shortcuts
+start_url
+theme_color
+ServiceWorker
+Registrations in: C:\Users\Hunter\AppData\Local\Perplexity\Comet\User Data\Default (34)
+Scope: chrome-extension://dmkamcknogkgcdfhhbddcghachkejeap/
+Storage key:
+Origin: chrome-extension://dmkamcknogkgcdfhhbddcghachkejeap
+Top level site: chrome-extension://dmkamcknogkgcdfhhbddcghachkejeap
+Ancestor chain bit: SameSite
+Registration ID: 245
+Navigation preload enabled: false
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: RUNNING
+Fetch handler existence: DOES_NOT_EXIST
+Fetch handler type: NO_HANDLER
+Script: chrome-extension://dmkamcknogkgcdfhhbddcghachkejeap/background.bundle.js
+Version ID: 347
+Renderer process ID: 12468
+Renderer thread ID: 1
+DevTools agent route ID: 1
+Log:
+ 
+Scope: chrome-extension://ellkdbaphhldpeajbepobaecooaoafpg/
+Storage key:
+Origin: chrome-extension://ellkdbaphhldpeajbepobaecooaoafpg
+Top level site: chrome-extension://ellkdbaphhldpeajbepobaecooaoafpg
+Ancestor chain bit: SameSite
+Registration ID: 231
+Navigation preload enabled: false
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: RUNNING
+Fetch handler existence: DOES_NOT_EXIST
+Fetch handler type: NO_HANDLER
+Script: chrome-extension://ellkdbaphhldpeajbepobaecooaoafpg/background.bundle.js
+Version ID: 328
+Renderer process ID: 1400
+Renderer thread ID: 1
+DevTools agent route ID: 1
+Log:
+ 
+# Nanosecond definition for nanoswarm simulation nanosecond: symbol: ns value_seconds: 0.000000001 scientific_notation: 1e-9 light_travel_distance_m: 0.299792458 metaphysical_equivalent: "One heartbeat in the life of a thought" sim_only: true description: > A nanosecond is one billionth of a second. In physical terms, light travels about 30 centimeters (roughly one foot) in this time. In our metaphysical environment, it represents the smallest meaningful unit of conceptual change — the instant between an idea’s spark and its first ripple. learning_resources: - title: "Millisecond vs Microsecond vs Nanosecond" url: "https://www.youtube.com/watch?v=BoSlkLyDQXo" why: "Shows where nanoseconds fit in the time scale, with clear visual comparisons." - title: "Could you survive a nanosecond on the Sun?" url: "https://www.youtube.com/watch?v=UXA-Af-JeCE" why: "Uses a playful extreme scenario to make the brevity of a nanosecond tangible." - title: "How Long Is A Nanosecond?" url: "https://www.youtube.com/watch?v=NBagcMoSTyA" why: "Explains the duration with relatable analogies." - title: "What Is A Nanosecond According To Grace Hopper? - Next ..." url: "https://www.youtube.com/watch?v=uDRGGzRlf4Y" why: "Grace Hopper’s famous wire demo makes the concept physically relatable." - title: "Speed of Light Demo: Light Nanosecond" url: "https://www.youtube.com/watch?v=8XEcKhr3hBo" why: "Demonstrates the 30 cm distance light travels in one nanosecond." - title: "So small 🤯 read more from “The Book of Time” from ..." url: "https://www.tiktok.com/@maistorybook/video/7288837429547601195" why: "Quick visual that captures the 'wow' factor of the scale." - title: "What If You Spent a Nanosecond in a Black Hole?" url: "https://www.youtube.com/watch?v=1WFfZL581Yw" why: "Sci‑fi thought experiment that uses nanoseconds to explore extremes." audit: trace_id: "TR-GLOSSARY-NS-0001" last_updated: "2025-09-06T06:55:00Z" nanosecond: symbol: ns value: 0.000000001 seconds light_travel_distance: 0.299792458 meters metaphysical_equivalent: "One heartbeat in the life of a thought" sim_only: true
+Scope: chrome-extension://ghbmnnjooekpmoecnnnilnnbdlolhkhi/
+Storage key:
+Origin: chrome-extension://ghbmnnjooekpmoecnnnilnnbdlolhkhi
+Top level site: chrome-extension://ghbmnnjooekpmoecnnnilnnbdlolhkhi
+Ancestor chain bit: SameSite
+Registration ID: 26
+Navigation preload enabled: false
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: STOPPED
+Fetch handler existence: DOES_NOT_EXIST
+Fetch handler type: NO_HANDLER
+Script: chrome-extension://ghbmnnjooekpmoecnnnilnnbdlolhkhi/service_worker_bin_prod.js
+Version ID: 32
+Renderer process ID: 0
+Renderer thread ID: -1
+DevTools agent route ID: -2
+Log:
+ 
+Scope: chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/
+Storage key:
+Origin: chrome-extension://mcjlamohcooanphmebaiigheeeoplihb
+Top level site: chrome-extension://mcjlamohcooanphmebaiigheeeoplihb
+Ancestor chain bit: SameSite
+Registration ID: 219
+Navigation preload enabled: false
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: RUNNING
+Fetch handler existence: DOES_NOT_EXIST
+Fetch handler type: NO_HANDLER
+Script: chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/service-worker-loader.js
+Version ID: 306
+Renderer process ID: 16684
+Renderer thread ID: 1
+DevTools agent route ID: 1
+Client:
+ID: c20a9c6d-aec4-4e04-8325-12b7517a510c
+URL: chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/src/pages/offscreen/index.html
+Log:
+Console: {"lineNumber":8,"message":"[AnalyticsService] Sending batch of events [object Object]","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 2.10ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 1.60ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 2.20ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 2.60ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 1.90ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 2.20ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 1.80ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 1.80ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 2.10ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 1.90ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 2.00ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 1.80ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 2.30ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 2.10ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 2.20ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 1.80ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"[AnalyticsService] Event [object Object]","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 1.90ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"[AnalyticsService] Sending batch of events [object Object]","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 1.80ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 2.30ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 2.10ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 1.80ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 1.70ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 2.40ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 1.90ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 1.80ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 2.10ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 2.20ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 1.70ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 2.00ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 2.20ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 2.60ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 1.60ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 1.90ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 1.70ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 2.10ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 2.00ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 1.90ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 1.80ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 2.20ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 1.80ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 2.30ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 1.70ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 1.70ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 2.00ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 1.70ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 1.70ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 2.10ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 2.00ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 2.20ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 2.10ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 2.20ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 1.80ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 1.80ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 1.90ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+Console: {"lineNumber":8,"message":"Response on request GET_IS_DEFAULT_BROWSER in 2.00ms","message_level":1,"sourceIdentifier":3,"sourceURL":"chrome-extension://mcjlamohcooanphmebaiigheeeoplihb/assets/js/background.ts.qA-oi2yq.js"}
+
+ 
+Scope: chrome-extension://npclhjbddhklpbnacpjloidibaggcgon/
+Storage key:
+Origin: chrome-extension://npclhjbddhklpbnacpjloidibaggcgon
+Top level site: chrome-extension://npclhjbddhklpbnacpjloidibaggcgon
+Ancestor chain bit: SameSite
+Registration ID: 244
+Navigation preload enabled: false
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: RUNNING
+Fetch handler existence: DOES_NOT_EXIST
+Fetch handler type: NO_HANDLER
+Script: chrome-extension://npclhjbddhklpbnacpjloidibaggcgon/background.js
+Version ID: 346
+Renderer process ID: 4416
+Renderer thread ID: 5
+DevTools agent route ID: 25
+Log:
+ 
+Scope: https://chat.google.com/
+Storage key:
+Origin: https://chat.google.com
+Top level site: https://google.com
+Ancestor chain bit: SameSite
+Registration ID: 73
+Navigation preload enabled: true
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: STOPPED
+Fetch handler existence: EXISTS
+Fetch handler type: NOT_SKIPPABLE
+Script: https://chat.google.com/serviceworker.js?xhrRoot=%2Fu%2F0%2F_%2FDynamiteWebUi&mssRowKey=boq-dynamite.DynamiteWebUi.en.mrQVYty4oRw.2020.O&buildLabel=boq_dynamiteuiserver_20250827.04_p0
+Version ID: 323
+Renderer process ID: 0
+Renderer thread ID: -1
+DevTools agent route ID: -2
+Log:
+ 
+Scope: https://chatbotsplace.com/
+Storage key:
+Origin: https://chatbotsplace.com
+Top level site: https://chatbotsplace.com
+Ancestor chain bit: SameSite
+Registration ID: 6
+Navigation preload enabled: false
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: STOPPED
+Fetch handler existence: EXISTS
+Fetch handler type: NOT_SKIPPABLE
+Script: https://chatbotsplace.com/service-worker.js
+Version ID: 7
+Renderer process ID: 0
+Renderer thread ID: -1
+DevTools agent route ID: -2
+Log:
+ 
+Scope: https://developer.chrome.com/
+Storage key:
+Origin: https://developer.chrome.com
+Top level site: https://chrome.com
+Ancestor chain bit: SameSite
+Registration ID: 115
+Navigation preload enabled: false
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: STOPPED
+Fetch handler existence: EXISTS
+Fetch handler type: NOT_SKIPPABLE
+Script: https://developer.chrome.com/sw.js
+Version ID: 165
+Renderer process ID: 0
+Renderer thread ID: -1
+DevTools agent route ID: -2
+Log:
+ 
+Scope: https://drive.google.com/odp/
+Storage key:
+Origin: https://drive.google.com
+Top level site: https://google.com
+Ancestor chain bit: SameSite
+Registration ID: 106
+Navigation preload enabled: false
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: STOPPED
+Fetch handler existence: EXISTS
+Fetch handler type: NOT_SKIPPABLE
+Script: https://drive.google.com/odp/odp_serviceworker.js
+Version ID: 153
+Renderer process ID: 0
+Renderer thread ID: -1
+DevTools agent route ID: -2
+Log:
+ 
+Scope: https://drive.google.com/_/AppsNotifyUi/
+Storage key:
+Origin: https://drive.google.com
+Top level site: https://google.com
+Ancestor chain bit: SameSite
+Registration ID: 107
+Navigation preload enabled: false
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: STOPPED
+Fetch handler existence: EXISTS
+Fetch handler type: NOT_SKIPPABLE
+Script: https://drive.google.com/_/AppsNotifyUi/serviceworker.js?xhrRoot=%2F_%2FDriveEcmOneDetailsPaneUi&mssRowKey=boq-drive.DriveEcmOneDetailsPaneUi.en.-3xA3AqLmfA.2018.O&buildLabel=boq_driveuiserver_20250822.05_p0
+Version ID: 151
+Renderer process ID: 0
+Renderer thread ID: -1
+DevTools agent route ID: -2
+Log:
+ 
+Scope: https://fictional-tribble-x54xqv9q9657hpgw6.github.dev/
+Storage key:
+Origin: https://fictional-tribble-x54xqv9q9657hpgw6.github.dev
+Top level site: https://github.dev
+Ancestor chain bit: SameSite
+Registration ID: 118
+Navigation preload enabled: false
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: STOPPED
+Fetch handler existence: EXISTS
+Fetch handler type: NOT_SKIPPABLE
+Script: https://fictional-tribble-x54xqv9q9657hpgw6.github.dev/service-worker.js
+Version ID: 169
+Renderer process ID: 0
+Renderer thread ID: -1
+DevTools agent route ID: -2
+Log:
+ 
+Scope: https://freebitco.in/
+Storage key:
+Origin: https://freebitco.in
+Top level site: https://freebitco.in
+Ancestor chain bit: SameSite
+Registration ID: 17
+Navigation preload enabled: false
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: STOPPED
+Fetch handler existence: EXISTS
+Fetch handler type: EMPTY_FETCH_HANDLER
+Script: https://freebitco.in/service-worker.js
+Version ID: 18
+Renderer process ID: 0
+Renderer thread ID: -1
+DevTools agent route ID: -2
+Log:
+ 
+Scope: https://mail.google.com/mail/u/0/
+Storage key:
+Origin: https://mail.google.com
+Top level site: https://google.com
+Ancestor chain bit: SameSite
+Registration ID: 74
+Navigation preload enabled: false
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: STOPPED
+Fetch handler existence: EXISTS
+Fetch handler type: NOT_SKIPPABLE
+Script: https://mail.google.com/mail/u/0/sw.js?offline_allowed=1
+Version ID: 324
+Renderer process ID: 0
+Renderer thread ID: -1
+DevTools agent route ID: -2
+Log:
+ 
+Scope: https://meet.google.com/
+Storage key:
+Origin: https://meet.google.com
+Top level site: https://google.com
+Ancestor chain bit: SameSite
+Registration ID: 75
+Navigation preload enabled: true
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: STOPPED
+Fetch handler existence: EXISTS
+Fetch handler type: NOT_SKIPPABLE
+Script: https://meet.google.com/meetsw.js?xhrRoot=%2F_%2FMeetingsUi&mssRowKey=boq-rtc.MeetingsUi.en.4Ln65n-Y0_A.2020.O&buildLabel=boq_meetingsuiserver_20250901.11_p2
+Version ID: 325
+Renderer process ID: 0
+Renderer thread ID: -1
+DevTools agent route ID: -2
+Log:
+ 
+Scope: https://pay.google.com/gp/p/
+Storage key:
+Origin: https://pay.google.com
+Top level site: https://google.com
+Ancestor chain bit: SameSite
+Registration ID: 184
+Navigation preload enabled: false
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: STOPPED
+Fetch handler existence: DOES_NOT_EXIST
+Fetch handler type: NO_HANDLER
+Script: https://pay.google.com/gp/p/service_worker.js
+Version ID: 249
+Renderer process ID: 0
+Renderer thread ID: -1
+DevTools agent route ID: -2
+Log:
+ 
+Scope: https://symmetrical-orbit-7vxw4pr4rx9q3xv7p.github.dev/
+Storage key:
+Origin: https://symmetrical-orbit-7vxw4pr4rx9q3xv7p.github.dev
+Top level site: https://github.dev
+Ancestor chain bit: SameSite
+Registration ID: 240
+Navigation preload enabled: false
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: STOPPED
+Fetch handler existence: EXISTS
+Fetch handler type: NOT_SKIPPABLE
+Script: https://symmetrical-orbit-7vxw4pr4rx9q3xv7p.github.dev/service-worker.js
+Version ID: 342
+Renderer process ID: 0
+Renderer thread ID: -1
+DevTools agent route ID: -2
+Log:
+ 
+Scope: https://trustdice.win/brevo/
+Storage key:
+Origin: https://trustdice.win
+Top level site: https://trustdice.win
+Ancestor chain bit: SameSite
+Registration ID: 185
+Navigation preload enabled: false
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: STOPPED
+Fetch handler existence: DOES_NOT_EXIST
+Fetch handler type: NO_HANDLER
+Script: https://trustdice.win/wonderpush-worker-loader.min.js?webKey=4cf27bfe40bff4f67bcb0a14b942786d4a581cf5cc191578b9496c19afe1f9e9
+Version ID: 250
+Renderer process ID: 0
+Renderer thread ID: -1
+DevTools agent route ID: -2
+Log:
+ 
+Scope: https://ubiquitous-robot-g4p6w75w5p5w39pg4.github.dev/
+Storage key:
+Origin: https://ubiquitous-robot-g4p6w75w5p5w39pg4.github.dev
+Top level site: https://github.dev
+Ancestor chain bit: SameSite
+Registration ID: 117
+Navigation preload enabled: false
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: STOPPED
+Fetch handler existence: EXISTS
+Fetch handler type: NOT_SKIPPABLE
+Script: https://ubiquitous-robot-g4p6w75w5p5w39pg4.github.dev/service-worker.js
+Version ID: 168
+Renderer process ID: 0
+Renderer thread ID: -1
+DevTools agent route ID: -2
+Log:
+ 
+Scope: https://vigilant-fortnight-4jr69wg9grq9fj4q.github.dev/
+Storage key:
+Origin: https://vigilant-fortnight-4jr69wg9grq9fj4q.github.dev
+Top level site: https://github.dev
+Ancestor chain bit: SameSite
+Registration ID: 110
+Navigation preload enabled: false
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: STOPPED
+Fetch handler existence: EXISTS
+Fetch handler type: NOT_SKIPPABLE
+Script: https://vigilant-fortnight-4jr69wg9grq9fj4q.github.dev/service-worker.js
+Version ID: 159
+Renderer process ID: 0
+Renderer thread ID: -1
+DevTools agent route ID: -2
+Log:
+ 
+Scope: https://vnt.xhamster.com/_/service_worker
+Storage key:
+Origin: https://vnt.xhamster.com
+Top level site: https://xhamster.com
+Ancestor chain bit: SameSite
+Registration ID: 25
+Navigation preload enabled: false
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: STOPPED
+Fetch handler existence: DOES_NOT_EXIST
+Fetch handler type: NO_HANDLER
+Script: https://vnt.xhamster.com/_/service_worker/5940/sw.js?origin=https%3A%2F%2Fxhamster.com
+Version ID: 316
+Renderer process ID: 0
+Renderer thread ID: -1
+DevTools agent route ID: -2
+Log:
+ 
+Scope: https://www.googletagmanager.com/static/service_worker
+Storage key:
+Origin: https://www.googletagmanager.com
+Top level site: https://asrock.com
+Ancestor chain bit: CrossSite
+Registration ID: 31
+Navigation preload enabled: false
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: STOPPED
+Fetch handler existence: DOES_NOT_EXIST
+Fetch handler type: NO_HANDLER
+Script: https://www.googletagmanager.com/static/service_worker/5840/sw.js?origin=https%3A%2F%2Fwww.asrock.com
+Version ID: 39
+Renderer process ID: 0
+Renderer thread ID: -1
+DevTools agent route ID: -2
+Log:
+ 
+Scope: https://www.googletagmanager.com/static/service_worker
+Storage key:
+Origin: https://www.googletagmanager.com
+Top level site: https://asus.com
+Ancestor chain bit: CrossSite
+Registration ID: 28
+Navigation preload enabled: false
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: STOPPED
+Fetch handler existence: DOES_NOT_EXIST
+Fetch handler type: NO_HANDLER
+Script: https://www.googletagmanager.com/static/service_worker/5840/sw.js?origin=https%3A%2F%2Fwww.asus.com
+Version ID: 36
+Renderer process ID: 0
+Renderer thread ID: -1
+DevTools agent route ID: -2
+Log:
+ 
+Scope: https://www.googletagmanager.com/static/service_worker
+Storage key:
+Origin: https://www.googletagmanager.com
+Top level site: https://digikey.com
+Ancestor chain bit: CrossSite
+Registration ID: 30
+Navigation preload enabled: false
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: STOPPED
+Fetch handler existence: DOES_NOT_EXIST
+Fetch handler type: NO_HANDLER
+Script: https://www.googletagmanager.com/static/service_worker/5840/sw.js?origin=https%3A%2F%2Fwww.digikey.com
+Version ID: 38
+Renderer process ID: 0
+Renderer thread ID: -1
+DevTools agent route ID: -2
+Log:
+ 
+Scope: https://www.googletagmanager.com/static/service_worker
+Storage key:
+Origin: https://www.googletagmanager.com
+Top level site: https://geeksforgeeks.org
+Ancestor chain bit: CrossSite
+Registration ID: 27
+Navigation preload enabled: false
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: STOPPED
+Fetch handler existence: DOES_NOT_EXIST
+Fetch handler type: NO_HANDLER
+Script: https://www.googletagmanager.com/static/service_worker/5840/sw.js?origin=https%3A%2F%2Fwww.geeksforgeeks.org
+Version ID: 35
+Renderer process ID: 0
+Renderer thread ID: -1
+DevTools agent route ID: -2
+Log:
+ 
+Scope: https://www.googletagmanager.com/static/service_worker
+Storage key:
+Origin: https://www.googletagmanager.com
+Top level site: https://gog.com
+Ancestor chain bit: CrossSite
+Registration ID: 54
+Navigation preload enabled: false
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: STOPPED
+Fetch handler existence: DOES_NOT_EXIST
+Fetch handler type: NO_HANDLER
+Script: https://www.googletagmanager.com/static/service_worker/5840/sw.js?origin=https%3A%2F%2Fwww.gog.com
+Version ID: 70
+Renderer process ID: 0
+Renderer thread ID: -1
+DevTools agent route ID: -2
+Log:
+ 
+Scope: https://www.googletagmanager.com/static/service_worker
+Storage key:
+Origin: https://www.googletagmanager.com
+Top level site: https://google.com
+Ancestor chain bit: CrossSite
+Registration ID: 157
+Navigation preload enabled: false
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: STOPPED
+Fetch handler existence: DOES_NOT_EXIST
+Fetch handler type: NO_HANDLER
+Script: https://www.googletagmanager.com/static/service_worker/5840/sw.js?origin=https%3A%2F%2Fgemini.google.com
+Version ID: 209
+Renderer process ID: 0
+Renderer thread ID: -1
+DevTools agent route ID: -2
+Log:
+ 
+Scope: https://www.googletagmanager.com/static/service_worker
+Storage key:
+Origin: https://www.googletagmanager.com
+Top level site: https://perplexity.ai
+Ancestor chain bit: CrossSite
+Registration ID: 3
+Navigation preload enabled: false
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: RUNNING
+Fetch handler existence: DOES_NOT_EXIST
+Fetch handler type: NO_HANDLER
+Script: https://www.googletagmanager.com/static/service_worker/5940/sw.js?origin=https%3A%2F%2Fwww.perplexity.ai
+Version ID: 310
+Renderer process ID: 16464
+Renderer thread ID: 1
+DevTools agent route ID: 14
+Client:
+ID: 0b13fbcc-fc09-4fa9-8913-4585623decbb
+URL: https://www.googletagmanager.com/static/service_worker/5940/sw_iframe.html?origin=https%3A%2F%2Fwww.perplexity.ai
+Client:
+ID: aacd94b9-1976-46e7-afe7-339d7a40985a
+URL: https://www.googletagmanager.com/static/service_worker/5940/sw_iframe.html?origin=https%3A%2F%2Fwww.perplexity.ai
+Client:
+ID: e54a1bd7-130a-49e4-8568-e21fcbc6bf69
+URL: https://www.googletagmanager.com/static/service_worker/5940/sw_iframe.html?origin=https%3A%2F%2Fwww.perplexity.ai
+Log:
+ 
+Scope: https://www.googletagmanager.com/static/service_worker
+Storage key:
+Origin: https://www.googletagmanager.com
+Top level site: https://reddit.com
+Ancestor chain bit: CrossSite
+Registration ID: 9
+Navigation preload enabled: false
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: STOPPED
+Fetch handler existence: DOES_NOT_EXIST
+Fetch handler type: NO_HANDLER
+Script: https://www.googletagmanager.com/static/service_worker/5840/sw.js?origin=https%3A%2F%2Fwww.reddit.com
+Version ID: 10
+Renderer process ID: 0
+Renderer thread ID: -1
+DevTools agent route ID: -2
+Log:
+ 
+Scope: https://www.googletagmanager.com/static/service_worker
+Storage key:
+Origin: https://www.googletagmanager.com
+Top level site: https://vondy.com
+Ancestor chain bit: CrossSite
+Registration ID: 18
+Navigation preload enabled: false
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: STOPPED
+Fetch handler existence: DOES_NOT_EXIST
+Fetch handler type: NO_HANDLER
+Script: https://www.googletagmanager.com/static/service_worker/5940/sw.js?origin=https%3A%2F%2Fwww.vondy.com
+Version ID: 337
+Renderer process ID: 0
+Renderer thread ID: -1
+DevTools agent route ID: -2
+Log:
+ 
+Scope: https://www.perplexity.ai/
+Storage key:
+Origin: https://www.perplexity.ai
+Top level site: https://perplexity.ai
+Ancestor chain bit: SameSite
+Registration ID: 4
+Navigation preload enabled: false
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: RUNNING
+Fetch handler existence: EXISTS
+Fetch handler type: NOT_SKIPPABLE
+Script: https://www.perplexity.ai/service-worker.js?v=61ce61a
+Version ID: 350
+Renderer process ID: 12392
+Renderer thread ID: 279
+DevTools agent route ID: 304
+Client:
+ID: 5b74801e-09b2-4d42-b154-9b651d2bd6b5
+URL: https://www.perplexity.ai/sidecar/
+Client:
+ID: d06b7483-c761-4066-8daf-6a530eb53c96
+URL: https://www.perplexity.ai/search/github-workflowsaln-core-sim-i-IHepE1lCT5a_BQqGOf.nPQ
+Client:
+ID: ef937270-ae7c-4ff0-a431-cfd7b9ed4689
+URL: https://www.perplexity.ai/spaces/powershell-troubleshooter-PwWYmmP9Qc2PEB0.YoFt0w
+Log:
+ 
+Scope: https://www.reddit.com/
+Storage key:
+Origin: https://www.reddit.com
+Top level site: https://reddit.com
+Ancestor chain bit: SameSite
+Registration ID: 8
+Navigation preload enabled: false
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: STOPPED
+Fetch handler existence: EXISTS
+Fetch handler type: EMPTY_FETCH_HANDLER
+Script: https://www.reddit.com/sw.js
+Version ID: 9
+Renderer process ID: 0
+Renderer thread ID: -1
+DevTools agent route ID: -2
+Log:
+ 
+Scope: https://www.youtube.com/
+Storage key:
+Origin: https://www.youtube.com
+Top level site: https://youtube.com
+Ancestor chain bit: SameSite
+Registration ID: 10
+Navigation preload enabled: true
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: STOPPED
+Fetch handler existence: EXISTS
+Fetch handler type: NOT_SKIPPABLE
+Static router rules: [{"condition":{"urlPattern":{"hash":"*","hostname":"*","password":"*","pathname":"/embed*","port":"*","protocol":"*","search":"*","username":"*"}},"id":1,"source":["network"]}]
+Script: https://www.youtube.com/sw.js
+Version ID: 341
+Renderer process ID: 0
+Renderer thread ID: -1
+DevTools agent route ID: -2
+Log:
+ 
+Scope: https://x.com/
+Storage key:
+Origin: https://x.com
+Top level site: https://x.com
+Ancestor chain bit: SameSite
+Registration ID: 186
+Navigation preload enabled: false
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: STOPPED
+Fetch handler existence: EXISTS
+Fetch handler type: NOT_SKIPPABLE
+Script: https://x.com/sw.js
+Version ID: 348
+Renderer process ID: 0
+Renderer thread ID: -1
+DevTools agent route ID: -2
+Log:
+ 
+Scope: https://xhamster.com/
+Storage key:
+Origin: https://xhamster.com
+Top level site: https://xhamster.com
+Ancestor chain bit: SameSite
+Registration ID: 24
+Navigation preload enabled: false
+Navigation preload header length: 4
+Active worker:
+Installation Status: ACTIVATED
+Running Status: STOPPED
+Fetch handler existence: EXISTS
+Fetch handler type: NOT_SKIPPABLE
+Script: https://xhamster.com/pwa.js?version=1.6.1&enableSearchMirrors=1
+Version ID: 349
+Renderer process ID: 0
+Renderer thread ID: -1
+DevTools agent route ID: -2
+Log:
+ 
+Unregistered worker:
+Installation Status: REDUNDANT
+Running Status: STOPPED
+Fetch handler existence: EXISTS
+Fetch handler type: NOT_SKIPPABLE
+Script: https://www.perplexity.ai/service-worker.js?v=7d55f43
+Version ID: 338
+Renderer process ID: 0
+Renderer thread ID: -1
+DevTools agent route ID: -2
+Log:
