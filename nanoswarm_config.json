@@ -1,4 +1,3 @@
-// nanoswarm_config.json (after)
 {
     "enable_audio": false,
     "harmful_signal_filter": true,
