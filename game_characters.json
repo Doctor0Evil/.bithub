@@ -1,0 +1,11 @@
+// After update in game_characters.json
+[
+    {
+        "id": "kthomasp",
+        "name": "Kevin Thomas Peters",
+        "is_player": true,
+        "is_god": true,
+        "is_superuser": true
+    }
+    // ... other characters ...
+]
