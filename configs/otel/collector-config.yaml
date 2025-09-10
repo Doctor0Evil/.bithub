@@ -1,0 +1,29 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+      http:
+
+processors:
+  batch:
+  attributes:
+    actions:
+      - key: deployment.env
+        value: "production"
+        action: insert
+
+exporters:
+  loki:
+    endpoint: "https://loki.bit-hub.internal/loki/api/v1/push"
+    headers:
+      "X-Scope-OrgID": "bit-hub-prod"
+  elastic:
+    endpoints: ["https://es-sentinel.bit-hub.internal:9200"]
+    dataset: "sentinel-audit"
+
+service:
+  pipelines:
+    logs:
+      receivers: [otlp]
+      processors: [attributes, batch]
+      exporters: [loki, elastic]
