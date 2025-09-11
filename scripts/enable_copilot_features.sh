@@ -165,3 +165,4 @@ fi
 echo "Done. Current .bithub content (first 200 lines):"
 sed -n '1,200p' "$TARGET" || true
 exit 0
+chmod +x scripts/enable_copilot_features.sh
