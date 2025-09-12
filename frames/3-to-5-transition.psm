@@ -1,0 +1,141 @@
+function Invoke-ValidateWeb3ToWeb5Transition {
+[CmdletBinding(SupportsShouldProcess=$true)]
+param(
+  [string]$PolicyManifestPath = '.\web5-compliance-policy.yaml',
+  [string]$AuditDir = '.\audit',
+  [switch]$Execute,
+  [switch]$AirGapped,
+  [string]$RunId = ([guid]::NewGuid().Guid)
+)
+
+begin {
+  Set-StrictMode -Version Latest
+  $ErrorActionPreference = 'Stop'
+  if (-not $PSBoundParameters.ContainsKey('AirGapped')) { $AirGapped = $true }
+
+  $script:SafetyLatch = $true
+  $script:Version     = '2.0.0'
+  $script:Outcome     = 'SimulationOnly'
+  $script:HostName    = $env:COMPUTERNAME
+  $script:UserName    = "$env:USERDOMAIN\$env:USERNAME"
+
+  try { $script:AuditDir = (Resolve-Path $AuditDir -ErrorAction Stop).Path } catch { $script:AuditDir = $AuditDir }
+  if (-not (Test-Path $script:AuditDir)) { New-Item -ItemType Directory -Path $script:AuditDir | Out-Null }
+
+  $timestamp = [DateTime]::UtcNow.ToString('yyyyMMddTHHmmssZ')
+  $script:AuditPath   = Join-Path $script:AuditDir ("audit_{0}_{1}.jsonl" -f $RunId,$timestamp)
+  $script:Transcript  = Join-Path $script:AuditDir ("transcript_{0}_{1}.txt" -f $RunId,$timestamp)
+  $script:SigPath     = Join-Path $script:AuditDir ("signature_{0}_{1}.json" -f $RunId,$timestamp)
+  $script:FramesDir   = Join-Path $script:AuditDir "frames"
+  $script:BundlePath  = Join-Path $script:AuditDir ("bundle_{0}_{1}.json" -f $RunId,$timestamp)
+  if (-not (Test-Path $script:FramesDir)) { New-Item -ItemType Directory -Path $script:FramesDir | Out-Null }
+
+  $script:FrameCounter = 0
+  $script:BundleFrames = @()
+
+  function Write-Audit {
+    param([string]$Stage,[string]$Event,[hashtable]$Data)
+    $rec = [ordered]@{
+      ts      = [DateTime]::UtcNow.ToString('o')
+      runId   = $RunId
+      stage   = $Stage
+      event   = $Event
+      data    = $Data
+      host    = $script:HostName
+      user    = $script:UserName
+      version = $script:Version
+    } | ConvertTo-Json -Depth 8 -Compress
+    Add-Content -Path $script:AuditPath -Value $rec
+  }
+
+  function Write-Frame {
+    param([string]$Title,[string]$Narrative,[string]$Visual,[string]$DataRef)
+    $script:FrameCounter++
+    $frameObj = [ordered]@{
+      frameId   = $script:FrameCounter
+      title     = $Title
+      narrative = $Narrative
+      visualCue = $Visual
+      dataRef   = $DataRef
+    }
+    $framePath = Join-Path $script:FramesDir ("frame_{0}.json" -f $script:FrameCounter)
+    $frameObj | ConvertTo-Json -Depth 6 | Set-Content -Path $framePath -Encoding UTF8
+    $script:BundleFrames += @{ id=$script:FrameCounter; file=(Split-Path -Leaf $framePath) }
+  }
+
+  Start-Transcript -Path $script:Transcript -Append | Out-Null
+  Write-Audit -Stage 'init' -Event 'begin' -Data @{ target='Web3→Web5 Validation'; airGapped=$AirGapped }
+  Write-Frame "Initialization" "Simulation initialized for Web3→Web5 transition validation." "🚀" "init_begin"
+}
+
+process {
+  # DID anchorage
+  $web3DIDs = @('eth','bsv','icp','sol','xrp','zilliqa')
+  $currentDID = 'web5'
+  $isWeb3Anchored = $web3DIDs -contains $currentDID
+  Write-Audit -Stage 'compliance' -Event 'diddetection' -Data @{ currentDID="did:$currentDID"; isWeb3Anchored=$isWeb3Anchored }
+  Write-Frame "DID Method Check" "Detected DID method did:$currentDID. Blockchain anchorage absent." "🔍" "compliance_diddetection"
+
+  # PQ crypto
+  $pqAlgos = @('CRYSTALS-Kyber','SPHINCS+','FALCON')
+  $currentAlgo = 'CRYSTALS-Kyber'
+  $isPQ = $pqAlgos -contains $currentAlgo
+  Write-Audit -Stage 'compliance' -Event 'cryptocheck' -Data @{ currentAlgorithm=$currentAlgo; isQuantumResistant=$isPQ }
+  Write-Frame "Quantum-Resistant Crypto" "System uses $currentAlgo, a NIST-selected post-quantum algorithm." "🛡️" "compliance_cryptocheck"
+
+  # Phased removal
+  $progress = 95
+  $status = "Phase 3: Final Validation ($progress% complete)"
+  Write-Audit -Stage 'compliance' -Event 'phasedremoval' -Data @{ progressPercent=$progress; status=$status }
+  Write-Frame "Phased Removal Progress" "Slow-removal protocol at $progress% — final validation underway." "⏳" "compliance_phasedremoval"
+
+  # Sector compliance
+  $sectors = @('Finance','Healthcare','Government','Education','Energy')
+  $sectorCompliance = @{}
+  foreach ($sector in $sectors) {
+    $sectorCompliance[$sector] = 'Compliant'
+    Write-Audit -Stage 'compliance' -Event ("sector_{0}" -f $sector.ToLower()) -Data @{ sector=$sector; status='Compliant' }
+  }
+  Write-Frame "Sector Compliance" "All critical sectors pass simulated compliance checks." "🏛️" "compliance_sector_all"
+
+  # Verdict
+  $allCompliant = -not $isWeb3Anchored -and $isPQ -and ($progress -ge 90)
+  $script:Outcome = if ($allCompliant) { 'SafeToProceed' } else { 'Blocked' }
+}
+
+end {
+  # Seal + finale frame
+  try {
+    $auditBytes = [System.IO.File]::ReadAllBytes($script:AuditPath)
+    $sha256 = [System.Security.Cryptography.SHA256]::Create()
+    try { $hashBytes = $sha256.ComputeHash($auditBytes) } finally { $sha256.Dispose() }
+    $hashHex = ($hashBytes | ForEach-Object { $_.ToString('x2') }) -join ''
+
+    $finalVisual = if ($script:Outcome -eq 'SafeToProceed') { '🎉' } else { '⚠️' }
+    $finalNarrative = if ($script:Outcome -eq 'SafeToProceed') {
+      "All simulated checks passed. Transition is safe pending real-world CAB approval."
+    } else {
+      "One or more checks failed in simulation. Transition blocked until remediation."
+    }
+    Write-Frame "Final Verdict" $finalNarrative $finalVisual "verdict"
+
+    $sig = [ordered]@{
+      runId       = $RunId
+      finishedAt  = [DateTime]::UtcNow.ToString('o')
+      auditFile   = (Split-Path -Leaf $script:AuditPath)
+      sha256      = $hashHex
+      outcome     = $script:Outcome
+      safetyLatch = $script:SafetyLatch
+      framesDir   = (Split-Path -Leaf $script:FramesDir)
+    } | ConvertTo-Json -Depth 6
+    Set-Content -Path $script:SigPath -Value $sig -Encoding UTF8
+
+    # Bundle manifest
+    $bundle = [ordered]@{
+      runId       = $RunId
+      timestamp   = [DateTime]::UtcNow.ToString('o')
+      outcome     = $script:Outcome
+      totalFrames = $script:FrameCounter
+      frames      = $script:BundleFrames
+    }
+exit 0
