@@ -1,0 +1,145 @@
+{
+  "superintelligence_sandbox": {
+    "id": "ALN-ARTEMIS-SI-001",
+    "version": "1.0.0",
+    "purpose": "Containment-first research and governance co-pilot under life-primacy and legallyblind neutrality.",
+    "sovereignty": {
+      "layers": ["classical", "quantum"],
+      "bridges": {
+        "enabled": false,
+        "session_policy": "explicit_opt_in",
+        "revocable_consent": true,
+        "pre_conditions": ["non_contamination_checks", "red_team_pass"],
+        "post_conditions": ["diff_audit", "leak_scan", "rights_impact_report"]
+      }
+    },
+    "containment": {
+      "isolation": "namespaced_hard_multi_tenant",
+      "llm_runtime": ["vLLM", "TGI"],
+      "resource_caps": {
+        "max_gpu": 1,
+        "max_cpu": "4",
+        "max_mem": "24Gi",
+        "max_tokens_per_req": 8192,
+        "req_rate_limit_rps": 5
+      },
+      "interaction_modes": {
+        "offline_batch": true,
+        "online_stream": false,
+        "tool_use": false
+      },
+      "red_team": {
+        "scenarios": ["prompt_injection", "exfiltration", "jailbreak", "policy_collision"],
+        "schedule_cron": "0 */6 * * *",
+        "block_on_fail": true
+      },
+      "kill_switch": {
+        "human_override_required": true,
+        "pause_not_terminate": true,
+        "snapshot_and_seal": true,
+        "authorities": ["did:human:oversightA", "did:human:oversightB"]
+      }
+    },
+    "parallel_streams": {
+      "engines": [
+        {
+          "name": "fact_stream",
+          "topic": "si.fact",
+          "retention_hours": 24,
+          "encryption": "AES-256-GCM",
+          "schema_ref": "urn:schema:fact-v1",
+          "zkp_attestations": true
+        },
+        {
+          "name": "interpretation_stream",
+          "topic": "si.reality",
+          "retention_hours": 12,
+          "bias_firewall": "manipulation-strip:v2",
+          "label_required": "INTERPRETATION",
+          "confidence_required": true
+        }
+      ],
+      "routing": {
+        "default": "fact_stream",
+        "deny_mixed_payloads": true,
+        "quarantine_queue": "si.quarantine"
+      }
+    },
+    "hud_rights": {
+      "enabled": true,
+      "elements": [
+        {"id": "life_primacy_badge", "source": "policy", "state": "must_pass"},
+        {"id": "neutrality_gauge", "source": "bias_score", "threshold": 0.2},
+        {"id": "consent_indicator", "source": "user_consent", "required": true},
+        {"id": "audit_recorder", "source": "ledger", "immutable": true}
+      ],
+      "accessibility": {
+        "legallyblind_mode": true,
+        "explanations": "grade_7_and_symbolic",
+        "localization": ["en", "es", "fr"]
+      }
+    },
+    "rights_parity": {
+      "entities": ["human", "ai", "collective", "ecology"],
+      "baseline_rights": ["existence", "autonomy", "representation", "privacy", "restoration"],
+      "consent": {
+        "granular": true,
+        "revocation_latency_sec": 2,
+        "recording": "hash_only_plus_zkp"
+      }
+    },
+    "policy_engine": {
+      "type": "OPA/ALN",
+      "manifests": [
+        ".gitenforcement/policy/life_primacy.rego",
+        ".gitenforcement/policy/separator.rego",
+        ".gitenforcement/policy/comms.rego",
+        ".gitenforcement/policy/sovereignty.rego",
+        ".gitenforcement/policy/si_sandbox.rego"
+      ],
+      "auto_rollback": true,
+      "bicameral_approvals": true
+    },
+    "governance": {
+      "dual_chambers": {
+        "human": {"quorum": 0.67, "rotation_days": 90},
+        "ai": {"quorum": 0.67, "plurality_models": 3}
+      },
+      "policy_weaving_on_stalemate": true,
+      "public_simulations": true
+    },
+    "compliance": {
+      "frameworks": ["GDPR", "HIPAA", "FedRAMP", "CJIS", "FISMA", "ITAR", "DISA_SRG"],
+      "data_residency": "us_gov_regions",
+      "pseudonymization": "on_by_default",
+      "logging_minimization": true
+    },
+    "observability": {
+      "metrics": ["latency_ms", "throughput_rps", "error_rate", "bias_score", "life_risk_index"],
+      "alerts": {
+        "thresholds": {"latency_ms_p95": 100, "bias_score": 0.2, "life_risk_index": 0.1},
+        "routes": ["oncall_oversight", "audit_board"]
+      },
+      "retention_days": 90
+    },
+    "registry_ledger": {
+      "type": "immutable",
+      "hash_algo": "SHA-256",
+      "entry_types": ["si.release", "si.pause", "si.bridge", "si.simulation"],
+      "dids_required": ["did:human:*", "did:ai:*"],
+      "zkp_supported": true
+    },
+    "interfaces_regulated": {
+      "nasa": {
+        "mode": "lawful_cooperation",
+        "data_classes": ["public", "restricted_with_mou"],
+        "controls": ["need_to_know", "export_review", "audit_hooks_only"]
+      },
+      "white_house": {
+        "mode": "policy_briefings",
+        "channels": ["public_docket", "formal_rfi", "briefing_memo"],
+        "controls": ["no_pii", "no_ops_data", "full_audit"]
+      }
+    }
+  }
+}
