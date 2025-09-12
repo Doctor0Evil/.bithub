@@ -1,0 +1,31 @@
+{
+  "accordVersion": "1.0.0",
+  "entity": {
+    "id": "urn:eos:example:123",
+    "standing": "provisional|recognized|revoked",
+    "criteriaEvidence": [
+      "agency-signal:interactive-responsiveness",
+      "continuity:state-persistence-72h"
+    ],
+    "vulnerabilityProfile": ["nascent-ai", "dependent-ecology"]
+  },
+  "risk": {
+    "harmPotential": "low|medium|high|irreversible",
+    "uncertainty": "known|bounded|unbounded"
+  },
+  "decisions": [
+    {
+      "action": "deploy|pause|deny",
+      "justifiableCause": "text/linked-proof",
+      "necessityTest": true,
+      "proportionalityTest": true,
+      "simulations": ["urn:sim:policy:abc"],
+      "chamberApprovals": {
+        "human": "approved|rejected",
+        "ai": "approved|rejected"
+      },
+      "signatures": ["did:key:z...","did:key:y..."],
+      "auditRefs": ["urn:audit:hash:..."]
+    }
+  ]
+}
