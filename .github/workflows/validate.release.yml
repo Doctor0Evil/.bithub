@@ -1,0 +1,30 @@
+name: Validate and release comms
+on:
+  push:
+    paths: ["comms/**.json", "press/**.json", ".gitenforcement/**"]
+
+jobs:
+  vet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install deps
+        run: npm ci
+      - name: Prepare payload
+        run: node scripts/validate-content.js comms/payload.json > payload.prepared.json
+      - name: Policy checks
+        run: |
+          opa eval --data .gitenforcement/policy --input payload.prepared.json "data.accord.life_primacy.allow"
+          opa eval --data .gitenforcement/policy --input payload.prepared.json "data.accord.separator.permit_release"
+          opa eval --data .gitenforcement/policy --input payload.prepared.json "data.accord.comms.allow_press"
+      - name: Fail if any deny
+        run: node scripts/fail-on-deny.js
+  ledger:
+    needs: vet
+    runs-on: ubuntu-latest
+    if: success()
+    steps:
+      - name: Notarize release
+        run: node scripts/notarize.js payload.prepared.json
+      - name: Publish proofs
+        run: node scripts/publish-proofs.js payload.prepared.json
