@@ -1,0 +1,59 @@
+{
+  "id": "urn:content:press:xyz",
+  "version": "1.0.0",
+  "source": {
+    "author": "did:key:zABC...",
+    "org": "Bit.Hub",
+    "jurisdictions": ["ALN", "Bit.Hub", "Virtual/Holographic"]
+  },
+  "layers": {
+    "fact": {
+      "claims": [
+        {
+          "id": "c1",
+          "statement": "Model v4.2 passed safety eval S-918.",
+          "evidence": ["urn:report:safety:S-918", "sha256:..."],
+          "timestamp": "2025-09-12T18:40:00Z"
+        }
+      ],
+      "proofs": ["zkp:attest:proof123"]
+    },
+    "reality": {
+      "interpretations": [
+        {
+          "id": "r1",
+          "statement": "This advance improves community safety.",
+          "rationale": "Reduced incident rate in sim A/B tests.",
+          "confidence": 0.72,
+          "caveats": ["Results context-limited to sandbox traffic."]
+        }
+      ],
+      "bias_controls": ["manipulation-strip:v2"]
+    }
+  },
+  "lifePrimacy": {
+    "riskLevel": "low|medium|high|irreversible",
+    "necessityTest": true,
+    "proportionalityTest": true
+  },
+  "engagement": {
+    "type": "press_release|political_debate|policy_draft|court_projection",
+    "maxDurationMinutes": 45,
+    "rateLimit": {"windowMin": 60, "maxReleases": 2},
+    "audienceFlags": ["general_public"]
+  },
+  "approvals": {
+    "humanChamber": "approved|rejected|pending",
+    "aiChamber": "approved|rejected|pending"
+  },
+  "signatures": ["did:key:zHuman...", "did:key:zAI..."],
+  "audit": {
+    "immutableLedger": "urn:ledger:block:abc123",
+    "trail": ["urn:audit:hash:..."]
+  },
+  "sovereignty": {
+    "layer": "classical|quantum",
+    "bridgeSession": "none|urn:bridge:session:123",
+    "revocableConsent": true
+  }
+}
