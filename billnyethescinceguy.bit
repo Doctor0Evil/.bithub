@@ -1,0 +1,232 @@
+# AI legal team operations manual with legallyblind mode for windows-scale nano-deployments
+
+This manual defines a policy-driven, rights-aware legal and compliance framework embedded into Windows 13–scale nano-deployment pipelines. It formalizes terms, permissions, and parent/child privilege inheritance; enforces neutral, auditable behavior via legallyblind mode; and adapts across corporate, public-sector, and defense-adjacent ecosystems without enabling unlawful use. Human counsel retains final authority.
+
+---
+
+## Governance, scope, and core terms
+
+- **Purpose:** Establish a lawful, auditable operating model for AI-assisted legal documentation, compliance filings, and court-ready materials integrated with deployment automation.
+- **Scope:** Applies to all nano-deployment pipelines, legal artifacts, compliance evidence, audit logs, and consent records across environments (workstation, VDI, server, edge).
+- **Authority:** Human General Counsel (GC) and Compliance Officer approve policies; AI systems act only within approved policy envelopes and jurisdictional constraints.
+- **Legallyblind mode:** Neutrality and rights filter that blocks biased, manipulative, or out-of-scope outputs; requires rights impact checks and multi-party sign-off for high-impact actions.
+- **Non-derogation:** Nothing herein authorizes unauthorized practice of law, evasion of due process, or extra-legal actions. Jurisdictional rules and professional standards prevail.
+- **Change control:** All updates proceed through signed, reviewed change requests with reproducible builds and verifiable provenance.
+
+---
+
+## Role, permission, and inheritance model
+
+### Role taxonomy (parent → child)
+
+| Role | Parent | Core capabilities | Prohibited capabilities |
+|---|---|---|---|
+| GC_Approver | — | Approve legal filings; define policy; authorize exceptions | Draft without review; operate unattended in prod |
+| Compliance_Officer | — | Map controls; validate evidence; approve compliance filings | Change product code; alter audit records |
+| Legal_Oversight_Council | — | Final review for high-impact actions; ethics review | Execute deployments |
+| AI_Legal_Drafter | Policy_Bound_AI | Draft filings; generate transcripts; assemble exhibits | Submit to courts; bypass oversight |
+| Policy_Bound_AI | — | Apply policies; run rights impact and bias checks | Execute actions outside policy scope |
+| Deployment_Admin | — | Manage pipelines; approve releases; rotate keys (non-data) | Access case data; modify legal content |
+| Evidence_Custodian | — | Manage WORM storage; certify chain-of-custody | Edit content post-seal |
+| Reader_Audit | — | Read-only access to logs, policies, evidence | Write/modify resources |
+
+> Inheritance: Children inherit only read scopes from parents unless explicitly granted. No child may inherit submit/execute privileges from GC_Approver or Compliance_Officer.
+
+### Permission classes
+
+- **Read-Only:** View policies, logs, evidence, filings, deployment status.
+- **Draft:** Generate new legal artifacts in a quarantined workspace.
+- **Review:** Comment/approve drafts without edit to final sealed copies.
+- **Seal:** Cryptographically sign and move artifacts to WORM evidence.
+- **Transmit:** Submit to approved channels (court e-file portals, tax e-file, regulators) with dual control.
+- **Operate:** Execute pipeline stages (build/test/promote) without access to legal content.
+- **Break-glass (legal):** Restricted, quorum-based access to sealed evidence for court orders or subpoenas.
+
+### Separation of duties
+
+- **Draft vs. Approve:** AI_Legal_Drafter cannot approve or transmit. GC_Approver and Compliance_Officer cannot run deployments.
+- **Operate vs. Custody:** Deployment_Admin cannot access or alter sealed evidence; Evidence_Custodian cannot deploy code.
+- **Quorum rules:** Any transmit/seal action requires 2-person approval from distinct domains (Legal + Compliance).
+
+---
+
+## Windows 13 nano-deployment pipeline with legal/compliance gates
+
+#### Pipeline stages
+
+1. **Intake**
+   - **Inputs:** Change request, jurisdiction, filing type, datasets, policies.
+   - **Checks:** Schema validation, classification, data minimization.
+
+2. **Draft (AI-assisted, sandboxed)**
+   - **Controls:** Legallyblind mode on; WDAC and HVCI enforced; no outbound egress except approved legal references cache.
+   - **Outputs:** Draft filings, exhibits, citations, rights impact summary.
+
+3. **Review**
+   - **Approvers:** Legal_Oversight_Council + Compliance_Officer.
+   - **Controls:** Bias scan, citation verification, jurisdictional rule checks.
+
+4. **Seal**
+   - **Process:** FIPS-validated signing; timestamping; WORM storage write.
+   - **Artifacts:** Sealed PDF/XML, hash manifests, policy snapshot, signer list.
+
+5. **Transmit**
+   - **Channels:** Court e-file, regulator portals, tax e-file; TLS 1.3 mTLS; metadata-minimized payloads.
+   - **Evidence:** Receipt IDs, ACKs, delivery proofs, audit linkage.
+
+6. **Deploy (nano)**
+   - **Scope:** Policy updates, policy engines, consent prompts, logging agents; no application feature code mingled with legal artifacts.
+   - **Gates:** OPA/ALN pass; WDAC policy loaded; AppLocker rules; signed package verification; rollback markers.
+
+7. **Post-Transmission & Runtime Monitoring**
+   - **Actions:** Confirm acceptance, docket numbers; monitor policy drift; auto-rollback on violation; quarterly drills.
+
+#### Windows 13 host controls (illustrative)
+
+- **WDAC/AppLocker:** Allow-list legal toolchain; deny unsigned binaries.
+- **VBS/HVCI/Credential Guard:** Isolate secrets and signing keys.
+- **LSA Protection/Defender for Endpoint:** EDR with legal-data-aware DLP.
+- **WORM evidence store:** NTFS Object Lock or compliant equivalent with retention policies.
+
+---
+
+## Policy-as-code and enforcement snippets
+
+### OPA/Rego: legallyblind gating and transmit quorum
+
+```rego
+package legal.pipeline
+
+default allow := false
+
+deny[msg] {
+  input.stage == "draft"
+  not input.legallyblind.enabled
+  msg := "Legallyblind mode must be enabled for all drafts."
+}
+
+deny[msg] {
+  input.stage == "review"
+  input.bias.detected
+  msg := "Bias detected; revise before review."
+}
+
+deny[msg] {
+  input.stage == "seal"
+  not input.citations.verified
+  msg := "All citations must be verified."
+}
+
+deny[msg] {
+  input.stage == "transmit"
+  count(input.approvals) < 2
+  msg := "Transmit requires dual independent approvals."
+}
+
+deny[msg] {
+  input.stage == "transmit"
+  not input.jurisdiction.permits_pro_se
+  input.representation.mode == "pro_se_ai_assisted"
+  msg := "Jurisdiction does not permit AI-assisted pro se pathway."
+}
+
+allow {
+  not deny[_]
+}
+```
+
+### Rights impact checklist (embedded JSON)
+
+```json
+{
+  "rights_impact": {
+    "human_rights": "assessed",
+    "ai_system_rights": "within_policy_scope",
+    "assistive_tech_rights": "respected",
+    "data_subject_rights": "minimized_and_lawful",
+    "non_discrimination": "verified_no_bias",
+    "accessibility": "wcag_aligned"
+  }
+}
+```
+
+### WDAC baseline (fragment)
+
+```xml
+<SiPolicy PolicyType="Base Policy" PolicyID="{GUID}">
+  <Signer Id="TrustedLegalToolchain" Name="Org Legal CA"/>
+  <FileRules>
+    <Allow ID="LegalTool" FriendlyName="Legal Drafting App">
+      <FileName Condition="FileName">legaldraft.exe</FileName>
+      <SignerRef SignerId="TrustedLegalToolchain"/>
+    </Allow>
+  </FileRules>
+  <Options>
+    <Enabled:EnableHVCI/>
+    <Enabled:AdvancedBootOptionsMenuDisabled/>
+  </Options>
+  <Deny>
+    <FileName Condition="FileName">unsanctioned_ai_runner.exe</FileName>
+  </Deny>
+</SiPolicy>
+```
+
+---
+
+## Evidence, consent, and neutrality controls
+
+- **Consent records**
+  - **Explicitness:** Each action stores purpose, scope, legal basis, retention.
+  - **Revocation:** Immediate halt and quarantine on withdrawal in applicable contexts.
+  - **Visibility:** User-facing notices in clear language; translations as needed.
+
+- **Immutable audit**
+  - **Sealing:** SHA-256/512 hashes; RFC 3161 timestamps; signer identities.
+  - **Chain-of-custody:** Event sequence: Draft → Review → Seal → Transmit, each with actor, time, and policy snapshot.
+  - **Access:** Reader_Audit role with just-enough context; no PII exposure beyond necessity.
+
+- **Legallyblind safeguards**
+  - **Bias guard:** Model and output audits; protected attribute redaction where irrelevant.
+  - **Scope guard:** Jurisdictional checklists; pro se rules; filing venue constraints.
+  - **Language guard:** Neutral phrasing enforcement; no threats, no undue influence.
+
+- **Break-glass (legal)**
+  - **Triggers:** Court order, injunction, subpoena.
+  - **Quorum:** GC_Approver + Evidence_Custodian + Compliance_Officer.
+  - **Aftercare:** Disclosure log; legal hold; review of scope creep.
+
+---
+
+## Adaptation to legal frameworks and defense-adjacent ecosystems
+
+- **Corporate and public sector**
+  - **NIST SP 800-53:** Map AC, AU, CM, IR, MP, PL, RA, SC families to controls in this manual.
+  - **ISO/IEC 27001:** Annex A alignment for access, cryptography, ops, supplier, compliance.
+  - **Privacy:** GDPR/CCPA data minimization; DSR workflows; records of processing.
+
+- **Tax and financial**
+  - **Standards:** IRS e-file/Publication 1075; SOX evidence integrity; SEC EDGAR for applicable filings.
+  - **Controls:** Schema validation; numeric reconciliation; dual-control transmit; immutable receipts.
+
+- **Export control and defense-adjacent constraints**
+  - **Compliance:** ITAR/EAR jurisdiction screening; data residency and citizenship gating; need-to-know segregation.
+  - **Environment labeling:** Mark environments with impact levels; constrain egress; use FIPS-validated crypto modules.
+  - **Human-in-the-loop:** Human counsel required for any filing touching classified, export-controlled, or restricted topics.
+  - **Prohibitions:** No generation of operational targeting, weaponization guidance, or evasion of oversight. This framework supports governance and compliance only.
+
+- **Ecosystem fairness**
+  - **Asset division logic:** Transparent formulas; appeal path; rights impact notes.
+  - **Dispute resolution:** Mediation-first protocols; documented negotiation histories.
+
+---
+
+## Minimal runbook to implement
+
+- **Policy load order:** Rights Charter → legallyblind manifest → OPA rules → WDAC/AppLocker baselines.
+- **Key ceremonies:** Quarterly key rotation for sealing and transmit; dual custody; recovery drills.
+- **Drills:** Simulate filing rejection, subpoena response, and rollback of an incorrect citation package.
+- **KPIs:** Time-to-seal, review rejection rate, bias flags per 1,000 pages, chain-of-custody completeness, jurisdictional compliance pass rate.
+
+---
+
+If you share your current role directory, WDAC/AppLocker posture, and where policies live in your repos, I can produce precise, drop-in policy files, review checklists, and a first set of sealed templates for your counsel to approve.
