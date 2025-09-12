@@ -1,0 +1,15 @@
+.bitenforcement/
+  policy/
+    life_primacy.rego
+    separator.rego
+    comms.rego
+    sovereignty.rego
+  data/
+    bias_lexicon.json
+    rate_state.json
+  workflows/
+    validate-comms.yml
+    record-ledger.yml
+docs/
+  comms-styleguide.md
+  labels.md
