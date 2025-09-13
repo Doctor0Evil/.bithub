@@ -1944,12 +1944,9 @@ Create ½êÈ�þ‰vB¸.ÚIT —êR}?PK?.bit.bit.bit.bit.bit.bit.bit.bit?­À1
 ½êÈ�þ‰vB¸.ÚIT —êR}?PK?.bit.bit.bit.bit.bit.bit.bit.bit?­À1<änano.aln
 ½êÈ�þ‰vB¸.ÚIT —êR}?PK?.bit.bit.bit.bit.bit.bit.bit.bit?­À1<änano.aln
 Create ½êÈ�þ‰vB¸.ÚIT —êR}?PK?.bit.bit.bit.bit.bit.bit.bit.bit?­À1<äna…
-1 hour ago
-View all files
-Drop to upload your files
-ReadMe.md
 
-Bit.Hub: Tokenless Compliance-First Orchestration Bit.Hub is a community-driven automation framework for secure, compliant CI/CD across federated clusters, fully detached from GitHub's auth mechanisms.
+;;
+#Bit.Hub: Tokenless Compliance-First Orchestration Bit.Hub is a community-driven automation framework for secure, compliant CI/CD across federated clusters, fully detached from GitHub's auth mechanisms.
 
 Features Universal Compliance Core Centralized manifests and Open Policy Agent (OPA) policies enforce workflow hygiene and content standards across all repositories and clusters.
 
