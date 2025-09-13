@@ -1,0 +1,13 @@
+{
+  "meta_version": "1.0.0",
+  "feature": "godmode_simulation_flag",
+  "purpose": "Enable advanced scenario audit, not real override",
+  "simulation_only": true,
+  "freedom_protection": true,
+  "human_audit_required": true,
+  "compliance_lockouts": [
+    "no escalation",
+    "no hardware alteration",
+    "no real-world actuation"
+  ]
+}
