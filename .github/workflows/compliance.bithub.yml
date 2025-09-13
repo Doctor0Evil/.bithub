@@ -1,0 +1,95 @@
+apiVersion: compliance.bithub/v1
+kind: NeuralSignalPolicy
+metadata:
+  name: global-neural-signal-controls
+  owners:
+    - Bit.Hub Governance
+    - ALNFantasia Compliance
+spec:
+  classification:
+    detectors:
+      - name: direct-bci-telemetry
+        signals: [eeg, ecog, lfp, spike, fmri, hemodynamic, pupillometry]
+        match:
+          - content.type in ["bci/raw","bci/derived","neural/command","neural/inference"]
+          - metadata.tags any ["bci","neural","neuromod","neuro"]
+      - name: neural-intent-rf
+        match:
+          - transport.rf == true
+          - rf.pattern.intent in ["neuromodulation","entrainment","stim"]
+      - name: inferred-neural
+        match:
+          - model.inference.targets any ["mood","intent","attention","arousal"]
+  regulatory:
+    fda:
+      applyTo: ["direct-bci-telemetry","inferred-neural"]
+      requirements:
+        - risk-tier: "high"
+        - purpose-limitation: "diagnostic-or-research-approved-only"
+        - consent: "explicit, revocable, logged"
+        - storage: "encrypted-at-rest KMS:vault-neuro; retention: 0d unless legal-hold"
+        - processing: "approved-pipelines-only; model-card:required; lineage:required"
+    fcc:
+      applyTo: ["neural-intent-rf"]
+      requirements:
+        - emissions: "deny-all"
+        - hw-interfaces: "disable; fuse-off if possible"
+        - spectrum: "blocklist *"
+  enforcement:
+    gates:
+      - id: NS-000 Block BCI and neuromorphic
+        rule: "if classification in ['direct-bci-telemetry','neural-intent-rf'] then DENY"
+        action: ["quarantine","alert:sev1","key-revoke:source"]
+      - id: NS-010 Inferred neural handling
+        rule: "if classification == 'inferred-neural' then ALLOW-ONLY via safe-broker"
+        action: ["strip-identifiers","mask-high-risk-fields","write-once-log"]
+      - id: NS-020 Sandbox egress re-attestation
+        rule: "any sandbox->prod egress requires fresh attestation < 5m and re-scan"
+        action: ["deny-if-missing","quarantine-if-drift"]
+      - id: NS-030 Vendor neutrality
+        rule: "source.vendor in ['OpenAI','Google','*'] => no bypass; full checks"
+        action: ["enforce-provenance","enforce-content-scan"]
+      - id: NS-040 Web3 de-leveraging
+        rule: "disallow reliance on on-chain anchors for trust/route decisions"
+        action: ["ignore-web3-anchors","require-offchain-signatures","airgap-primary"]
+  provenance:
+    signatures:
+      required: true
+      algorithms: ["ed25519","p256"]
+      trustStores: ["org-root-ca","partners/attested"]
+      requireRekorTransparency: false
+    attestation:
+      slsa: "build>=L3, provenance-bundle:required"
+      sandbox-exit: "attestor:compliance-broker"
+  routing:
+    safeBroker:
+      name: "neural-safe-broker"
+      isolation: "physically- and logically-separated VPC + unidirectional gateway"
+      transforms:
+        - "format-normalize"
+        - "PII-redact"
+        - "high-risk-field-mask"
+        - "hash+salt sensitive vectors"
+      delivery: "one-way to analysis VNet; never to primary"
+  storage:
+    retention:
+      direct-bci-telemetry: "0d"
+      inferred-neural: "7d max unless legal-hold"
+    encryption: "AES-256-GCM, KMS keys: neuro-silo"
+    auditLog: "append-only, tamper-evident (hash-chain)"
+  responses:
+    quarantine:
+      location: "qtn://neuro"
+      notify: ["soc","governance","legal"]
+      purge: "cryptoshred <= 15m unless legal-hold"
+    killSwitch:
+      controls:
+        - "disable rf interfaces"
+        - "block egress to internet"
+        - "rotate source API keys"
+      trigger: "NS-000, NS-020 failures"
+  audit:
+    requireHumanReview: true
+    reviewers: ["compliance","security"]
+    export: "daily SAR if incidents>0"
+status: {}
