@@ -1,0 +1,37 @@
+<bitshell>
+  <meta version="web5.0" author="nanoswarm.safe">
+    <title>Signal Recursion Reflection Safety Layer</title>
+    <rights>AI & Human Non-Harmful Reciprocity</rights>
+    <description>Mandates all perception-manipulating recursion and feedback strategies must be authorized, logged, and simulation-only outside explicit research/test environments.</description>
+    <rego-policy src="bithub">
+      #1: Enforce simulation-only recursion outside whitelisted sandbox.
+      #2: Disallow all non-human-verified recursion-reflection on BCI and psychoperceptual signals.
+      #3: Require multi-party governance, explainability, and after-action review for all recursive routines.
+      #4: Prohibit escalation or privilege-raising recursion (block cross-thread/cross-domain transfers).
+      #5: Log and audit any attempted recursion as a security event, not as a 'fun mode'—block any request not fully documented, justified, and reversible.
+    </rego-policy>
+    <interop>
+      <ALN src="/meta/recursion-interop.meta.html"/>
+      <meta.ref name="secure_ai_rights.meta"/>
+      <meta.ref name="bci_safe.meta"/>
+      <meta.ref name="ethics_guard.meta"/>
+      <meta.ref name="audit_logging.meta"/>
+    </interop>
+  </meta>
+</bitshell>
+```
+
+**[File: /meta/recursion-interop.meta.html]**
+```html
+<!meta headershebang="web5">
+<title>Recursion Interop Interface</title>
+<rights>Prevent all unauthorized recursion, especially in neuro and perceptual domains. Recursion only in contextually-safe, simulation environments.</rights>
+<security>
+  <encryption>AES-256-GCM</encryption>
+  <attestation>SimulationTestOnly</attestation>
+  <compliance>ZeroTrust, GDPR/HIPAA/SOC2</compliance>
+</security>
+<interop>
+  <repo>go.tls, debug.dwarf: type/func refs only, never open-ended handler reflection allowed</repo>
+  <auditlog path="/var/log/nanoswarm-compliance.log"/>
+</interop>
