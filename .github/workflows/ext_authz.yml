@@ -1,0 +1,15 @@
+# Envoy ext_authz + OPA check
+filters:
+  - name: envoy.filters.http.ext_authz
+    typed_config:
+      grpc_service: { google_grpc: { target_uri: "opa:9191" } }
+      include_peer_certificate: true
+routes:
+  - match: { prefix: "/" }
+    route: { cluster: safe-broker }
+    typed_per_filter_config:
+      envoy.filters.http.ext_authz:
+        check_settings:
+          context_extensions:
+            require_signature: "true"
+            require_attestation: "true"
