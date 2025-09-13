@@ -1,0 +1,8 @@
+<!meta version="web5">
+<title>Audit Logging Policy</title>
+<rights>
+  All recursive, signal-redirecting, or BCI-modifying operations to be logged with immutable, timestamped, zero-trust records for independent audit.
+</rights>
+<policy>
+  <rule>Audit data shall be accessible for post-incident review by human and AI ethics boards.</rule>
+</policy>
