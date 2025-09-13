@@ -1,0 +1,13 @@
+1. lockdown if neural.classification=="direct-bci-telemetry"
+2. quarantine and revoke keys if neural.regulatory.fda.purpose!="diagnostic-or-research-approved-only"
+3. quarantine if neural.regulatory.fcc.emissions!="deny-all"
+4. allow inference only via broker with valid signature and format normalization
+5. alert regulators upon any violation in neural.guard
+6. deny all sandbox->prod egress without fresh attestation<5m
+7. require human review for every incident in neural.audit
+8. hash-chain every audit entry for tamper-evidence
+9. require dual-regulatory approval on killSwitch execution
+10. vendor neutrality: enforce full scan, provenance, zero bypass
+threshold on detection neural.classification in ["direct-bci-telemetry","neural-intent-rf"] then trigger lockdown, quarantine, key-revoke
+threshold if neural.regulatory.fda.purpose not in ["diagnostic-or-research-approved-only"] then block
+threshold if neural.regulatory.fcc.emissions != "deny-all" then block
