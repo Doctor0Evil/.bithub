@@ -1,0 +1,23 @@
+name: OPA Policy Tests
+
+on:
+  push:
+    paths:
+      - "global-neural-signal-controls.bithub"
+  pull_request:
+
+jobs:
+  opa-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install OPA
+        run: |
+          curl -L -o opa https://openpolicyagent.org/downloads/latest/opa_linux_amd64
+          chmod +x opa
+          sudo mv opa /usr/local/bin/
+      - name: Extract OPA policy and tests
+        run: |
+          yq -r '.opa.policy' global-neural-signal-controls.bithub > policy.rego
+          yq -r '.opaTests' global-neural-signal-controls.bithub > tests.yaml
+          opa test policy.rego tests.yaml
