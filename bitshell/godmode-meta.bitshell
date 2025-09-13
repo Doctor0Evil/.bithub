@@ -1,0 +1,25 @@
+# /bitshell/godmode-meta.bitshell
+# Simulation-only: Meta flag for supervised scenario testing and debugging
+
+ENABLE_GODMODE="true"
+SAFETY_SIMULATION_ONLY="true"
+# Immutable audit logs for all "godmode" invocations
+ENFORCE_AUDIT_LOG="/var/log/godmode_invocations.log"
+# Immediate halt endpoint (global rollback)
+HALT_ENDPOINT="meta://safety/halt"
+# Allowed only within audit-review context, NO privilege-escalation or hardware impact
+PROHIBITED_ACTIONS=(
+  "firmware flash"
+  "energy-harvesting control"
+  "real BCI override"
+  "nanoswarm replication"
+  "hardware mutation"
+)
+
+# On godmode action: require human review
+function godmode_invoke() {
+  log_event "Attempted godmode action: $1"
+  if ! human_review "$1"; then
+    invoke_halt "Unreviewed godmode action blocked"
+  fi
+}
