@@ -1,68 +1,81 @@
----
+Bit.Hub – Advanced Governance & Ethical Cybernetics Platform
 
-# .bithub
+Overview
 
-**Secure, Cross-Platform Git Credential Storage with Authentication to GitHub, Azure Repos, and Other Popular Git Hosting Services**
+Bit.Hub is a federated, compliance-first platform designed for secure, ethical, and transparent management of AI, BCI, and cybernetic systems. It integrates advanced governance, audit, and privacy protocols to ensure maximum ethical-safety, neural integrity, and cybernetic non-interference. This repository serves as the core framework for research, monitoring, and orchestration of AI-BCI compliance workflows.
 
-## Overview
+Key Features
 
-`.bithub` is a privacy-first, cross-platform solution designed to securely store and manage Git credentials. It facilitates seamless authentication with major Git hosting services, including GitHub and Azure Repos, ensuring developers can work efficiently without compromising on security or privacy.
+Neural Integrity & Ethical AI Protection
+Ensures no AI system interacts with neural signals or BCI devices outside of federally approved medical research contexts.
 
-## Features
+Cybernetic Non-Interference
+Strict prohibition of cybernetic augmentation or manipulation in AI interactions, with real-time enforcement of compliance rules.
 
-* **Cross-Platform Compatibility**: Operates seamlessly across Windows, macOS, and Linux environments.
-* **Secure Credential Storage**: Utilizes industry-standard encryption to protect user credentials.
-* **Multi-Host Support**: Supports authentication with GitHub, Azure Repos, and other popular Git hosting services.
-* **Privacy-First Design**: Adheres to GDPR and other privacy regulations, ensuring user data is handled responsibly.
-* **Neural & Cybernetic Safety Compliance**: Ensures that the tool does not interfere with neural signals, BCI devices, or cybernetic augmentations.
+Federated Governance & Audit
+Immutable logging and blockchain-anchored compliance for transparent, accountable operations.
 
-## Installation
+Web5 Transition
+Slowly removes Web3 dependencies while ensuring secure and compliant integration with next-generation decentralized protocols.
 
-To install `.bithub`, follow the instructions appropriate for your operating system:
+Privacy-Centric Design
+GDPR-compliant data handling, zero-trust principles, and end-to-end encryption for all sensitive workflows.
 
-### Windows
+Coordinated Vulnerability & Incident Response
+Full CVD templates, risk assessment, and defensive action frameworks integrated with ALN and Bit.Hub manifest standards.
 
-```bash
-choco install .bithub
-```
+Global Compliance & Ethical Oversight
+Designed to align with NIST, FDA, ISO, and international human-rights frameworks, including neurorights and ethical AI principles.
 
-### macOS
+Getting Started
 
-```bash
-brew install .bithub
-```
+Clone the Repository
 
-### Linux
+git clone https://github.com/Doctor0Evil/.bithub.git
+cd .bithub
 
-```bash
-sudo apt-get install .bithub
-```
 
-## Usage
+Install Dependencies
+Follow setup instructions in INSTALL.md for federated nodes, governance beacons, and compliance modules.
 
-After installation, configure `.bithub` with your Git hosting service credentials:
+Configure Governance & Compliance
+Use config/governance.yaml to define audit rules, neural protection policies, and federated access control.
 
-```bash
-.bithub configure
-```
+Launch Monitoring & Orchestration
+Start nodes using:
 
-Follow the prompts to authenticate with your Git hosting service.
+./bithub-node start
 
-## Compliance & Ethics
 
-`.bithub` is developed with a strong emphasis on:
+Contribute Securely
+All contributions must comply with CONTRIBUTING.md and include mandatory audit logs and ethical-risk assessment.
 
-* **Data Privacy**: Compliant with GDPR and other relevant data protection regulations.
-* **User Autonomy**: Does not interfere with user decisions or actions.
-* **Transparency**: All operations are auditable, ensuring accountability.
-* **Neural & Cybernetic Safety**: Explicitly avoids interaction with neural signals, BCI devices, or cybernetic augmentations.
+Documentation
 
-## Contributing
+ALN Protocols & Manifest Standards
 
-Contributions are welcome! Please ensure that your contributions align with our ethical guidelines and comply with relevant data protection regulations.
+Vulnerability & Incident Response Guide
 
-## License
+Governance & Compliance Beacon Guide
 
-This project is licensed under the Apache-2.0 License - see the [LICENSE](LICENSE) file for details.
+Privacy & Data Protection Policies
 
----
+Community & Support
+
+Join discussions via secure federation channels.
+
+Report security issues using encrypted channels only; all CVD submissions are logged automatically.
+
+Follow ethical AI, neural privacy, and cybernetic compliance rules at all times.
+
+License
+
+Proprietary – All rights reserved. Unauthorized modification, distribution, or reverse engineering is strictly prohibited. Compliance with federal, state, and international regulations is mandatory for all users and contributors.
+
+Acknowledgements
+
+NIST, FDA, ISO, GDPR frameworks
+
+Bit.Hub/ALN federated orchestration standards
+
+Ethical AI and neurorights advocacy groups
