@@ -1,0 +1,10 @@
+{
+  "meta_version": "1.0.0",
+  "feature": "enhanced-oversight",
+  "guarantees": [
+    "Respect for all human de-escalation signals",
+    "Immutable stop functions at all abstraction layers",
+    "Explainable outcomes only"
+  ],
+  "note": "This is not an omnipotence feature; it is a safe access layer for trace/debug/tuning."
+}
