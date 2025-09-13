@@ -1,0 +1,18 @@
+[Unit]
+Description=Bit.Hub Self-Healing Nanoswarm Node
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/path/to/bithub-node-start.sh
+Restart=always
+RestartSec=5
+WatchdogSec=15s
+StartLimitIntervalSec=0
+User=nonrootuser
+Environment=BITHUB_HAS_INIT=0
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
