@@ -1,0 +1,26 @@
+# docker-compose.yml
+version: "3.9"
+services:
+  envoy:
+    image: envoyproxy/envoy:v1.30-latest
+    volumes:
+      - ./envoy.yaml:/etc/envoy/envoy.yaml:ro
+    ports:
+      - "8080:8080"
+    depends_on:
+      - opa
+      - safe-broker
+
+  opa:
+    image: openpolicyagent/opa:latest
+    command: run --server --addr=:9191 /policy/policy.rego
+    volumes:
+      - ./policy.rego:/policy/policy.rego:ro
+    ports:
+      - "9191:9191"
+
+  safe-broker:
+    image: nginx:alpine
+    command: ["nginx", "-g", "daemon off;"]
+    ports:
+      - "9000:80"
