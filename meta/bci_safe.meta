@@ -1,0 +1,11 @@
+<!meta version="web5">
+<title>BCI Device Ethical Safety Overlay</title>
+<rights>
+  BCIs must always prioritize user freedom, autonomy, and emotional safety.
+</rights>
+<policy>
+  <rule>Any external signal relay or recursion must default to DROP and be logged as a compliance event.</rule>
+</policy>
+<interop>
+  <module>hardware.killswitch, firmware-signed, human-auth</module>
+</interop>
