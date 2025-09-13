@@ -1,0 +1,7 @@
+{
+  "simulation_flag": true,
+  "physical_actuation": false,
+  "freedom_guaranteed": true,
+  "audit_log_enforced": true,
+  "explanation": "Godmode is an abstract marker for maximal simulation authority. Not literal, not physical, never used for real-world override."
+}
