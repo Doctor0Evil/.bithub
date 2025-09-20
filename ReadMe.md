@@ -1,10 +1,8 @@
----
-
 # Bit.Hub – Advanced Governance & Ethical Cybernetics Platform
 
 ## Overview
 
-Bit.Hub is a **federated, compliance-first platform** designed for secure, ethical, and transparent management of **AI, BCI, and cybernetic systems**.
+Bit.Hub is a **federated, compliance-first platform** designed for secure, ethical, and transparent management of **AI, BCI, and cybernetic systems**.  
 It integrates advanced governance, audit, and privacy protocols to ensure:
 
 * Maximum **ethical safety**
@@ -17,32 +15,32 @@ This repository serves as the **core framework** for:
 * Monitoring
 * Orchestration of **AI-BCI compliance workflows**
 
----
+***
 
 ## ✨ Key Features
 
-* **Neural Integrity & Ethical AI Protection**
+- **Neural Integrity & Ethical AI Protection**  
   Prevents AI systems from interacting with neural signals or BCI devices outside federally approved medical research contexts.
 
-* **Cybernetic Non-Interference**
+- **Cybernetic Non-Interference**  
   Strict prohibition of augmentation or manipulation in AI interactions, enforced in real time.
 
-* **Federated Governance & Audit**
+- **Federated Governance & Audit**  
   Immutable logging, blockchain-anchored compliance, and transparent operations.
 
-* **Web5 Transition**
+- **Web5 Transition**  
   Gradual removal of Web3 dependencies, enabling secure integration with next-generation decentralized protocols.
 
-* **Privacy-Centric Design**
+- **Privacy-Centric Design**  
   GDPR-compliant, zero-trust data handling, end-to-end encryption.
 
-* **Coordinated Vulnerability & Incident Response**
-  CVD templates, risk assessments, and defensive action frameworks integrated with **ALN/Bit.Hub** manifest standards.
+- **Coordinated Vulnerability & Incident Response**  
+  CVD templates, risk assessments, and defensive action frameworks integrated with ALN/Bit.Hub manifest standards.
 
-* **Global Compliance & Ethical Oversight**
-  Aligned with **NIST, FDA, ISO, GDPR**, neurorights, and ethical AI principles.
+- **Global Compliance & Ethical Oversight**  
+  Aligned with NIST, FDA, ISO, GDPR, neurorights, and ethical AI principles.
 
----
+***
 
 ## 🚀 Getting Started
 
@@ -55,23 +53,22 @@ cd .bithub
 
 ### Install Dependencies
 
-See **[INSTALL.md](INSTALL.md)** for setup of:
+See [INSTALL.md](https://github.com/Doctor0Evil/.bithub/blob/main/INSTALL.md) for setup of:
 
-* Federated nodes
-* Governance beacons
-* Compliance modules
+- Federated nodes
+- Governance beacons
+- Compliance modules
 
 ### Configure Governance & Compliance
 
 ```bash
 nano config/governance.yaml
 ```
-
 Define:
 
-* Audit rules
-* Neural protection policies
-* Federated access controls
+- Audit rules
+- Neural protection policies
+- Federated access controls
 
 ### Launch Monitoring & Orchestration
 
@@ -79,49 +76,52 @@ Define:
 ./bithub-node start
 ```
 
----
+***
 
 ## 🤝 Contributing
 
-* All contributions must follow **[CONTRIBUTING.md](CONTRIBUTING.md)**.
-* Mandatory:
+All contributions must follow [CONTRIBUTING.md](https://github.com/Doctor0Evil/.bithub/blob/main/CONTRIBUTING.md).
 
-  * Audit logs
-  * Ethical-risk assessments
+**Mandatory:**
 
----
+- Audit logs
+- Ethical-risk assessments
+
+***
 
 ## 📖 Documentation
 
-* ALN Protocols & Manifest Standards
-* Vulnerability & Incident Response Guide
-* Governance & Compliance Beacon Guide
-* Privacy & Data Protection Policies
+- ALN Protocols & Manifest Standards
+- Vulnerability & Incident Response Guide
+- Governance & Compliance Beacon Guide
+- Privacy & Data Protection Policies
 
----
+***
 
 ## 🌐 Community & Support
 
-* Join discussions via secure federation channels.
-* Report security issues only through **encrypted channels** (CVD submissions logged automatically).
-* Follow **ethical AI, neural privacy, and cybernetic compliance** rules at all times.
+Join discussions via secure federation channels.  
+Report security issues only through encrypted channels (CVD submissions logged automatically).  
+Follow ethical AI, neural privacy, and cybernetic compliance rules at all times.
 
----
+***
 
 ## ⚖️ License
 
-**Proprietary – All rights reserved.**
+**Proprietary – All rights reserved.**  
+Unauthorized modification, distribution, or reverse engineering is strictly prohibited.  
+Compliance with federal, state, and international regulations is mandatory for all users and contributors.
 
-* Unauthorized modification, distribution, or reverse engineering is strictly prohibited.
-* Compliance with **federal, state, and international regulations** is mandatory for all users and contributors.
-
----
+***
 
 ## 🙏 Acknowledgements
 
-* **NIST, FDA, ISO, GDPR** frameworks
-* **Bit.Hub/ALN** orchestration standards
-* Ethical AI & **neurorights advocacy groups**
+- NIST, FDA, ISO, GDPR frameworks
+- Bit.Hub/ALN orchestration standards
+- Ethical AI & neurorights advocacy groups
 
----
+***
 
+**Tip:**  
+No YAML formatting (like a front-matter block with triple-dashes) is used here to avoid conflicts in Markdown-only documentation.  
+If you have YAML for configuration, keep it in its own `.yaml` files — not inside `ReadMe.md`. This ensures **YAML parsing errors are eliminated** and your documentation is clean and error free for your organization.
