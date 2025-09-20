@@ -35,7 +35,7 @@ This repository serves as the **core framework** for:
   GDPR-compliant, zero-trust data handling, end-to-end encryption.
 
 - **Coordinated Vulnerability & Incident Response**  
-  CVD templates, risk assessments, and defensive action frameworks integrated with ALN/Bit.Hub manifest standards.
+  CVD templates, risk assessments, and defensive action frameworks integrated with ALN/Bit.Hub manifest standards.
 
 - **Global Compliance & Ethical Oversight**  
   Aligned with NIST, FDA, ISO, GDPR, neurorights, and ethical AI principles.
@@ -123,5 +123,4 @@ Compliance with federal, state, and international regulations is mandatory for a
 ***
 
 **Tip:**  
-No YAML formatting (like a front-matter block with triple-dashes) is used here to avoid conflicts in Markdown-only documentation.  
-If you have YAML for configuration, keep it in its own `.yaml` files — not inside `ReadMe.md`. This ensures **YAML parsing errors are eliminated** and your documentation is clean and error free for your organization.
+YAML blocks (`---` and other config) should reside in dedicated `.yaml` files—**never inside `ReadMe.md`**—to ensure Markdown rendering and YAML parsing are error free and your project remains clean for contributors and automation.
